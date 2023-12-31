@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -115,15 +114,21 @@
 </footer>
 
 <script>
-    function startCountdown() {
-        var now = new Date();
-        var nextYear = now.getFullYear() + 1;
-        var countdownDate = new Date("January 1, 2024 00:00:00");
+  function startCountdown() {
+    var now = new Date();
+    var nextYear = now.getFullYear() + 1;
+    var countdownDate = new Date("January 1, 2024 00:00:00");
 
-        var x = setInterval(function() {
-            now = new Date();
-            var distance = countdownDate - now;
+    var x = setInterval(function() {
+        now = new Date();
+        var distance = countdownDate - now;
 
+        if (distance < 0) {
+            clearInterval(x);
+            // Mostra il messaggio di "Buon Anno" al posto dei blocchi di countdown
+            document.getElementById("countdown").innerHTML = "<h2>Buon Anno!</h2>";
+            // Puoi aggiungere ulteriori personalizzazioni o azioni qui
+        } else {
             var days = Math.floor(distance / (1000 * 60 * 60 * 24));
             var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -134,16 +139,13 @@
             document.getElementById("hours").innerHTML = hours;
             document.getElementById("minutes").innerHTML = minutes;
             document.getElementById("seconds").innerHTML = seconds;
+        }
+    }, 1000);
+}
 
-            if (distance < 0) {
-                clearInterval(x);
-                startCountdown(); // Ricomincia il countdown
-            }
-        }, 1000);
-    }
+// Avvia il countdown quando la pagina è caricata
+startCountdown();
 
-    // Avvia il countdown quando la pagina Ã¨ caricata
-    startCountdown();
 </script>
 
 </body>
