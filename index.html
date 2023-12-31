@@ -65,6 +65,20 @@
                 max-width: none;
             }
         }
+
+        footer {
+            margin-top: 30px;
+            color: #aaa;
+        }
+
+        footer a {
+            color: #fd7e14;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
     </style>
     <title>New Year Countdown</title>
 </head>
@@ -95,29 +109,40 @@
     </div>
 </div>
 
+<footer>
+    Creato da <a href="https://discord.com/invite/mFVfHBbJ3d" target="_blank">MettDeveloper ~ Discord</a>
+</footer>
+
 <script>
-    var countdownDate = new Date("December 31, 2023 23:59:59").getTime();
+    function startCountdown() {
+        var now = new Date();
+        var nextYear = now.getFullYear() + 1;
+        var countdownDate = new Date(nextYear, 11, 1, 0, 0, 0, 0);
 
-    var x = setInterval(function() {
-        var now = new Date().getTime();
-        var distance = countdownDate - now;
+        var x = setInterval(function() {
+            now = new Date();
+            var distance = countdownDate - now;
 
-        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        // Aggiorna i blocchi di countdown
-        document.getElementById("days").innerHTML = days;
-        document.getElementById("hours").innerHTML = hours;
-        document.getElementById("minutes").innerHTML = minutes;
-        document.getElementById("seconds").innerHTML = seconds;
+            // Aggiorna i blocchi di countdown
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("minutes").innerHTML = minutes;
+            document.getElementById("seconds").innerHTML = seconds;
 
-        if (distance < 0) {
-            clearInterval(x);
-            document.getElementById("countdown").innerHTML = "Buon Anno!";
-        }
-    }, 1000);
+            if (distance < 0) {
+                clearInterval(x);
+                startCountdown(); // Ricomincia il countdown
+            }
+        }, 1000);
+    }
+
+    // Avvia il countdown quando la pagina è caricata
+    startCountdown();
 </script>
 
 </body>
