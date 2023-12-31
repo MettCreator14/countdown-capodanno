@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -117,7 +118,7 @@
     function startCountdown() {
         var now = new Date();
         var nextYear = now.getFullYear() + 1;
-        var countdownDate = new Date(nextYear, 11, 1, 0, 0, 0, 0);
+        var countdownDate = new Date("January 1, 2024 00:00:00");
 
         var x = setInterval(function() {
             now = new Date();
@@ -141,7 +142,7 @@
         }, 1000);
     }
 
-    // Avvia il countdown quando la pagina è caricata
+    // Avvia il countdown quando la pagina Ã¨ caricata
     startCountdown();
 </script>
 
